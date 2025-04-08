@@ -14,7 +14,7 @@ const Login = () => {
     event.preventDefault()
     try{
       if(currentState === 'Sign up'){
-        const response = await axios.post(`http://localhost:4000/api/user/register`, {name, email, password})
+        const response = await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/user/register`, {name, email, password})
         if(response.data.success){
           setToken(response.data.token)
           localStorage.setItem('token', response.data.token)
@@ -22,7 +22,7 @@ const Login = () => {
           toast.error(response.data.message)
         }
       }else{
-        const response = await axios.post(`http://localhost:4000/api/user/login`,{email, password})
+        const response = await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/user/login`,{email, password})
         if(response.data.success){
           setToken(response.data.token)
           localStorage.setItem('token', response.data.token)

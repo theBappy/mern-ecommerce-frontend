@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "$";
   const deliveryFee = 10;
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [cartItems, setCartItems] = useState({})
@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
 
     if(token){
       try{
-        await axios.post(`http://localhost:4000/api/cart/add`, {itemId, size}, {headers: {token}})
+        await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/cart/add`, {itemId, size}, {headers: {token}})
         
       }catch(error){
         console.log(error)
@@ -74,7 +74,7 @@ const ShopContextProvider = (props) => {
 
     if(token){
       try{
-        await axios.post(`http://localhost:4000/api/cart/update`, {itemId, size, quantity}, {headers: {token}})
+        await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/cart/update`, {itemId, size, quantity}, {headers: {token}})
       }catch(error){
         console.log(error)
         toast.error(error.message)
@@ -102,7 +102,7 @@ const ShopContextProvider = (props) => {
   const getUserCart = async (token) => {
     console.log("Fetching cart for token:", token);
     try {
-      let response = await axios.post(`http://localhost:4000/api/cart/get`, {}, { headers: { token } });
+      let response = await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/cart/get`, {}, { headers: { token } });
       console.log("Cart data response:", response.data);
       if (response.data.success) {
         setCartItems(response.data.cartData);
@@ -115,7 +115,7 @@ const ShopContextProvider = (props) => {
   
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/product/list")
+    fetch(`https://mern-ecom-backend-production.up.railway.app/api/product/list`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.products)) {

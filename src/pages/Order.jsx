@@ -13,7 +13,7 @@ const Order = () => {
         return null;
       }
       const response = await axios.post(
-        `http://localhost:4000/api/order/userorders`,
+        `https://mern-ecom-backend-production.up.railway.app/api/order/userorders`,
         {},
         { headers: { token } }
       );

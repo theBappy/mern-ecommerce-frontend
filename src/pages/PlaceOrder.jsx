@@ -63,7 +63,7 @@ const PlaceOrder = () => {
       switch (method) {
         // api calls for cash on delivery orders
         case "cod":
-          const response = await axios.post(`http://localhost:4000/api/order/cod`, orderData, {headers: {token}})
+          const response = await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/order/cod`, orderData, {headers: {token}})
           if(response.data.success){
             toast.success('Order placed successfully')
             localStorage.removeItem('cartItems')
@@ -75,7 +75,7 @@ const PlaceOrder = () => {
           break;
 
         case "stripe":
-          const responseStripe = await axios.post(`http://localhost:4000/api/order/stripe`, orderData, {headers: {token}})
+          const responseStripe = await axios.post(`https://mern-ecom-backend-production.up.railway.app/api/order/stripe`, orderData, {headers: {token}})
           if(responseStripe.data.success){
             const {session_url} = responseStripe.data
             window.location.replace(session_url)
